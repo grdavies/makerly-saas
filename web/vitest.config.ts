@@ -5,5 +5,8 @@ export default defineConfig({
     environment: 'node',
     globals: true,
     setupFiles: ['./test/setup.ts'],
+    deps: {
+      inline: ['#imports'],
+    },
   },
 });

@@ -1,5 +1,26 @@
 import { beforeAll, vi } from 'vitest';
 
+// Mock Nuxt auto-imports globally
+vi.mock('#imports', () => ({
+  useSupabaseClient: vi.fn(() => ({
+    from: vi.fn(() => ({
+      select: vi.fn(() => ({
+        eq: vi.fn(() => ({
+          single: vi.fn(),
+        })),
+      })),
+      update: vi.fn(() => ({
+        eq: vi.fn(() => ({
+          select: vi.fn(),
+        })),
+      })),
+    })),
+  })),
+  useSupabaseUser: vi.fn(() => ({ value: null })),
+  useSupabaseSession: vi.fn(() => ({ value: null })),
+  $fetch: vi.fn(),
+}));
+
 // Mock Vue reactivity functions globally
 vi.mock('vue', () => ({
   ref: (value: any) => ({ value }),
