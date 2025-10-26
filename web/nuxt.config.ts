@@ -91,8 +91,9 @@ export default defineNuxtConfig({
   // Planship configuration
   planship: {
     apiKey: process.env.PLANSHIP_API_KEY,
-    productId: process.env.PLANSHIP_PRODUCT_ID,
-    customerId: process.env.PLANSHIP_CUSTOMER_ID
+    productSlug: process.env.PLANSHIP_PRODUCT_SLUG,
+    clientId: process.env.PLANSHIP_API_CLIENT_ID,
+    clientSecret: process.env.PLANSHIP_API_CLIENT_SECRET
   },
   
   // Pinia configuration
@@ -106,7 +107,7 @@ export default defineNuxtConfig({
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
       planshipApiKey: process.env.PLANSHIP_API_KEY,
-      planshipProductId: process.env.PLANSHIP_PRODUCT_ID
+      planshipProductSlug: process.env.PLANSHIP_PRODUCT_SLUG
     }
   },
   

@@ -54,7 +54,9 @@ SUPABASE_DB_PASSWORD=$(prompt_env_var "SUPABASE_DB_PASSWORD" "Supabase database 
 # Get Planship configuration (optional)
 echo -e "${GREEN}Planship configuration (optional, press Enter to skip):${NC}"
 PLANSHIP_API_KEY=$(prompt_env_var "PLANSHIP_API_KEY" "Planship API key" "")
-PLANSHIP_PRODUCT_ID=$(prompt_env_var "PLANSHIP_PRODUCT_ID" "Planship product ID" "")
+PLANSHIP_PRODUCT_SLUG=$(prompt_env_var "PLANSHIP_PRODUCT_SLUG" "Planship product slug" "")
+PLANSHIP_API_CLIENT_ID=$(prompt_env_var "PLANSHIP_API_CLIENT_ID" "Planship client ID" "")
+PLANSHIP_API_CLIENT_SECRET=$(prompt_env_var "PLANSHIP_API_CLIENT_SECRET" "Planship client secret" "")
 
 # Get Resend configuration (optional)
 echo -e "${GREEN}Email configuration (optional, press Enter to skip):${NC}"
@@ -70,7 +72,9 @@ SUPABASE_DB_PASSWORD=$SUPABASE_DB_PASSWORD
 
 # Planship Configuration
 PLANSHIP_API_KEY=$PLANSHIP_API_KEY
-PLANSHIP_PRODUCT_ID=$PLANSHIP_PRODUCT_ID
+PLANSHIP_PRODUCT_SLUG=$PLANSHIP_PRODUCT_SLUG
+PLANSHIP_API_CLIENT_ID=$PLANSHIP_API_CLIENT_ID
+PLANSHIP_API_CLIENT_SECRET=$PLANSHIP_API_CLIENT_SECRET
 
 # Email Configuration
 RESEND_API_KEY=$RESEND_API_KEY

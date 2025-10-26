@@ -136,16 +136,16 @@
   - [x] 5.6 Implement unit conversion composable with unit families
   - [x] 5.7 Create I18N configuration API endpoints for team and user settings
 
-- [ ] 6.0 Integrate Planship & Plan Gates
-  - [ ] 6.1 Set up Planship account and configure API keys
-  - [ ] 6.2 Install and configure @planship/nuxt module
-  - [ ] 6.3 Create plan capability definitions in database
-  - [ ] 6.4 Implement usage tracking system with rolling windows
-  - [ ] 6.5 Create grace window management for plan limits
-  - [ ] 6.6 Implement RFC-7807 compliant error responses for plan limits
-  - [ ] 6.7 Create usePlanGates composable for feature access checking
-  - [ ] 6.8 Implement upgrade/downgrade flows with Planship integration
-  - [ ] 6.9 Create plan gates UI components for upgrade prompts
+- [x] 6.0 Integrate Planship & Plan Gates
+  - [x] 6.1 Set up Planship account and configure API keys
+  - [x] 6.2 Install and configure @planship/nuxt module
+  - [x] 6.3 Create plan capability definitions in database
+  - [x] 6.4 Implement usage tracking system with rolling windows
+  - [x] 6.5 Create grace window management for plan limits
+  - [x] 6.6 Implement RFC-7807 compliant error responses for plan limits
+  - [x] 6.7 Create usePlanGates composable for feature access checking
+  - [x] 6.8 Implement upgrade/downgrade flows with Planship integration
+  - [x] 6.9 Create plan gates UI components for upgrade prompts
 
 - [ ] 7.0 Setup Development Environment
   - [ ] 7.1 Configure ESLint with Nuxt-specific rules and TypeScript integration

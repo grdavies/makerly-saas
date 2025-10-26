@@ -98,6 +98,56 @@ export type Database = {
         }
         Relationships: []
       }
+      grace_windows: {
+        Row: {
+          capability_key: string
+          created_at: string | null
+          expires_at: string
+          grace_limit: number
+          grace_period_days: number
+          id: string
+          started_at: string | null
+          status: Database["public"]["Enums"]["grace_window_status"] | null
+          team_id: string | null
+          updated_at: string | null
+          used_at: string | null
+        }
+        Insert: {
+          capability_key: string
+          created_at?: string | null
+          expires_at: string
+          grace_limit: number
+          grace_period_days?: number
+          id?: string
+          started_at?: string | null
+          status?: Database["public"]["Enums"]["grace_window_status"] | null
+          team_id?: string | null
+          updated_at?: string | null
+          used_at?: string | null
+        }
+        Update: {
+          capability_key?: string
+          created_at?: string | null
+          expires_at?: string
+          grace_limit?: number
+          grace_period_days?: number
+          id?: string
+          started_at?: string | null
+          status?: Database["public"]["Enums"]["grace_window_status"] | null
+          team_id?: string | null
+          updated_at?: string | null
+          used_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "grace_windows_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       permissions: {
         Row: {
           action: string
@@ -124,6 +174,169 @@ export type Database = {
           location?: string
           resource?: string
           row_version?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      plan_capabilities: {
+        Row: {
+          capability_key: string
+          capability_name: string
+          capability_type: Database["public"]["Enums"]["capability_type"]
+          created_at: string | null
+          description: string | null
+          id: string
+          is_enabled: boolean | null
+          limit_value: number | null
+          plan_id: string | null
+          sort_order: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          capability_key: string
+          capability_name: string
+          capability_type: Database["public"]["Enums"]["capability_type"]
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          limit_value?: number | null
+          plan_id?: string | null
+          sort_order?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          capability_key?: string
+          capability_name?: string
+          capability_type?: Database["public"]["Enums"]["capability_type"]
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          limit_value?: number | null
+          plan_id?: string | null
+          sort_order?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "plan_capabilities_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plan_change_history: {
+        Row: {
+          change_reason: string | null
+          change_type: string
+          created_at: string | null
+          created_by: string | null
+          effective_date: string | null
+          from_plan_id: string | null
+          id: string
+          team_id: string | null
+          to_plan_id: string | null
+        }
+        Insert: {
+          change_reason?: string | null
+          change_type: string
+          created_at?: string | null
+          created_by?: string | null
+          effective_date?: string | null
+          from_plan_id?: string | null
+          id?: string
+          team_id?: string | null
+          to_plan_id?: string | null
+        }
+        Update: {
+          change_reason?: string | null
+          change_type?: string
+          created_at?: string | null
+          created_by?: string | null
+          effective_date?: string | null
+          from_plan_id?: string | null
+          id?: string
+          team_id?: string | null
+          to_plan_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "plan_change_history_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "plan_change_history_from_plan_id_fkey"
+            columns: ["from_plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "plan_change_history_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "plan_change_history_to_plan_id_fkey"
+            columns: ["to_plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plans: {
+        Row: {
+          created_at: string | null
+          currency_code: string | null
+          description: string | null
+          id: string
+          metadata: Json | null
+          name: string
+          planship_plan_id: string
+          price_monthly: number | null
+          price_yearly: number | null
+          sort_order: number | null
+          status: Database["public"]["Enums"]["plan_status"] | null
+          trial_days: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          currency_code?: string | null
+          description?: string | null
+          id?: string
+          metadata?: Json | null
+          name: string
+          planship_plan_id: string
+          price_monthly?: number | null
+          price_yearly?: number | null
+          sort_order?: number | null
+          status?: Database["public"]["Enums"]["plan_status"] | null
+          trial_days?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          currency_code?: string | null
+          description?: string | null
+          id?: string
+          metadata?: Json | null
+          name?: string
+          planship_plan_id?: string
+          price_monthly?: number | null
+          price_yearly?: number | null
+          sort_order?: number | null
+          status?: Database["public"]["Enums"]["plan_status"] | null
+          trial_days?: number | null
           updated_at?: string | null
         }
         Relationships: []
@@ -316,6 +529,66 @@ export type Database = {
           },
         ]
       }
+      team_subscriptions: {
+        Row: {
+          canceled_at: string | null
+          created_at: string | null
+          current_period_end: string | null
+          current_period_start: string | null
+          id: string
+          plan_id: string | null
+          planship_subscription_id: string | null
+          status: string | null
+          team_id: string | null
+          trial_end: string | null
+          trial_start: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          canceled_at?: string | null
+          created_at?: string | null
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan_id?: string | null
+          planship_subscription_id?: string | null
+          status?: string | null
+          team_id?: string | null
+          trial_end?: string | null
+          trial_start?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          canceled_at?: string | null
+          created_at?: string | null
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan_id?: string | null
+          planship_subscription_id?: string | null
+          status?: string | null
+          team_id?: string | null
+          trial_end?: string | null
+          trial_start?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_subscriptions_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_subscriptions_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: true
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       teams: {
         Row: {
           base_currency_code: string | null
@@ -456,6 +729,50 @@ export type Database = {
           },
         ]
       }
+      usage_tracking: {
+        Row: {
+          capability_key: string
+          id: string
+          metadata: Json | null
+          recorded_at: string | null
+          team_id: string | null
+          usage_value: number
+          window_end: string
+          window_start: string
+          window_type: Database["public"]["Enums"]["usage_window_type"]
+        }
+        Insert: {
+          capability_key: string
+          id?: string
+          metadata?: Json | null
+          recorded_at?: string | null
+          team_id?: string | null
+          usage_value?: number
+          window_end: string
+          window_start: string
+          window_type: Database["public"]["Enums"]["usage_window_type"]
+        }
+        Update: {
+          capability_key?: string
+          id?: string
+          metadata?: Json | null
+          recorded_at?: string | null
+          team_id?: string | null
+          usage_value?: number
+          window_end?: string
+          window_start?: string
+          window_type?: Database["public"]["Enums"]["usage_window_type"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "usage_tracking_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_i18n_preferences: {
         Row: {
           created_at: string | null
@@ -566,6 +883,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_team_capabilities: { Args: { team_uuid: string }; Returns: Json }
+      get_team_plan: { Args: { team_uuid: string }; Returns: Json }
+      get_team_usage: {
+        Args: {
+          capability_key: string
+          team_uuid: string
+          window_type: Database["public"]["Enums"]["usage_window_type"]
+        }
+        Returns: number
+      }
       get_user_currency: {
         Args: { user_uuid: string }
         Returns: Database["public"]["Enums"]["currency_code"]
@@ -574,6 +901,18 @@ export type Database = {
       get_user_unit_family: {
         Args: { user_uuid: string }
         Returns: Database["public"]["Enums"]["unit_family"]
+      }
+      team_has_capability: {
+        Args: { capability_key: string; team_uuid: string }
+        Returns: boolean
+      }
+      team_within_limits: {
+        Args: {
+          capability_key: string
+          team_uuid: string
+          window_type: Database["public"]["Enums"]["usage_window_type"]
+        }
+        Returns: boolean
       }
       user_belongs_to_team: { Args: { p_team_id: string }; Returns: boolean }
       user_has_permission: {
@@ -591,6 +930,7 @@ export type Database = {
         | "login"
         | "logout"
         | "permission_change"
+      capability_type: "boolean" | "numeric" | "metered"
       currency_code:
         | "USD"
         | "EUR"
@@ -621,10 +961,13 @@ export type Database = {
         | "DD.MM.YYYY"
         | "YYYY/MM/DD"
         | "DD/MM/YY"
+      grace_window_status: "active" | "expired" | "used"
       member_status: "active" | "inactive" | "pending"
+      plan_status: "active" | "inactive" | "archived"
       team_status: "active" | "inactive" | "suspended"
       time_format: "12h" | "24h"
       unit_family: "metric" | "imperial" | "custom"
+      usage_window_type: "daily" | "weekly" | "monthly" | "yearly"
       user_status: "active" | "inactive" | "suspended"
     }
     CompositeTypes: {
@@ -761,6 +1104,7 @@ export const Constants = {
         "logout",
         "permission_change",
       ],
+      capability_type: ["boolean", "numeric", "metered"],
       currency_code: [
         "USD",
         "EUR",
@@ -793,10 +1137,13 @@ export const Constants = {
         "YYYY/MM/DD",
         "DD/MM/YY",
       ],
+      grace_window_status: ["active", "expired", "used"],
       member_status: ["active", "inactive", "pending"],
+      plan_status: ["active", "inactive", "archived"],
       team_status: ["active", "inactive", "suspended"],
       time_format: ["12h", "24h"],
       unit_family: ["metric", "imperial", "custom"],
+      usage_window_type: ["daily", "weekly", "monthly", "yearly"],
       user_status: ["active", "inactive", "suspended"],
     },
   },
