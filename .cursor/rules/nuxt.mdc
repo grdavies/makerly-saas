@@ -1,0 +1,18 @@
+---
+alwaysApply: true
+---
+The following documentation related to both Nuxt and Nuxt UI. Keep this in memory to always have a full understanding of the development framework and its UI components available:
+
+@.project_docs/nuxt/nuxt.md
+@.project_docs/nuxt/nuxt-ui.md
+
+## Development Configuration
+- **TypeScript Development Mode**: Disable `typeCheck: true` during development to avoid auto-import conflicts with Nuxt's module system
+- **Environment Variable Loading**: .env files are loaded before .env.local in Nuxt, requiring credentials in .env for modules that initialize early
+
+## Theme Development Workflow
+- **Multi-Application Testing**: Create comprehensive testing strategies that cover all applications (docs, marketing, web) in a monorepo with dedicated E2E test suites
+- **Build Process Optimization**: Create theme-specific build configurations that optimize for different application types (SSG for docs/marketing, SSR for web)
+- **Git Hooks for Quality**: Implement pre-commit and pre-push hooks that prevent build artifacts, sensitive files, and ensure code quality before commits
+- **Script-Based Theme Management**: Create specialized scripts for theme development workflow (build, test, dev, git operations) with proper error handling and colored output
+- **Progressive Theme Implementation**: Establish foundation (environment, dependencies, build, testing, version control) before template integration

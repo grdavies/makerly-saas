@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+---
+As an AI coder please keep these rules in memory at all times and follow them for every prompt:
+
+@.project_docs/ai-dev-playbooks/core.md
+@.project_docs/ai-dev-playbooks/concise.md
+@.project_docs/ai-dev-playbooks/no-absolute-right.md

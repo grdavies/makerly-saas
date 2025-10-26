@@ -1,0 +1,10 @@
+---
+alwaysApply: true
+---
+The following documentation has all of our features and requirements for this project. Keep these documents in your memory so that you can stay aligned:
+
+@.project_docs/mvp/product-requirements-document-mvp.md
+@.project_docs/mvp/project-structure-delivery.md
+@.project_docs/mvp/tech-stack-architecture.md
+@.project_docs/mvp/schema-design.md
+@.project_docs/mvp/user-flows.md

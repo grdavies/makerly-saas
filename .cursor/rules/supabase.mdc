@@ -1,0 +1,61 @@
+---
+alwaysApply: true
+---
+Supabase integration patterns and best practices for the Makerly project:
+
+## Database Schema Management
+- Use migration files for all schema changes rather than direct database manipulation
+- Include proper RLS policies for all tables with team-based isolation
+- Add audit triggers to all tables for compliance tracking
+- Generate comprehensive TypeScript types for all database operations
+
+## Migration System Design
+- **Cloud-First Approach**: Prioritize cloud Supabase development over local Docker unless explicitly required for offline work
+- **Configuration Analysis**: Always examine existing environment variables, Nuxt config, and previous migration scripts before proposing architectural changes
+- **Migration Tracking**: Implement comprehensive migration tracking with checksums, version control, and environment separation
+- **Error Handling**: Use proper error handling with fallback mechanisms for missing functions (e.g., exec_sql)
+- **Environment Validation**: Always validate that required environment variables are available before attempting to use them
+- **Migration Verification Protocol**: Always verify that database migrations are successfully applied to the target environment before marking database-related tasks as complete
+- **Post-Migration Validation**: Run `pnpm db:status` to confirm migration application and `pnpm db:types` to update TypeScript types after applying migrations
+
+## Caching Strategy
+- Implement service layer abstraction for cache operations with proper error handling
+- Use team-scoped cache keys for multi-tenant isolation
+- Implement cache warming for frequently accessed data
+- Use job queues for background processing with Redis
+
+## Plan Gates System
+- Create comprehensive capability and usage tracking systems for SaaS applications
+- Implement grace windows for plan limit enforcement
+- Use RFC-7807 compliant error responses for plan limit violations
+- Track usage with rolling windows and proper TTL management
+
+## I18N System Design
+- **Composable Architecture**: Break I18N features into focused composables (useI18n, useCurrencyFormatting, useDateTimeFormatting, etc.) for better maintainability and reusability
+- **Team-User Hierarchy**: Implement team-level I18N defaults with user-level overrides, enabling both consistency and personalization
+- **Progressive Implementation**: Start with core I18N composable, then build specialized utilities (currency, date/time, units) on top of the foundation
+- **Real-Time Preview**: Include live preview functionality in admin settings pages to improve user experience and reduce configuration errors
+- **Comprehensive Unit System**: Design unit conversion systems with base unit conversion and category-specific handling for special cases (temperature, currency)
+- **Type-First Development**: Define detailed interfaces and type definitions before implementation to ensure type safety and clear contracts
+
+## Integration Patterns
+- **Third-Party Service Integration**: When integrating external services (like Planship), verify configuration and test connectivity before marking integration tasks as complete
+- **Type-Safe Integration**: Create custom classes (like MakerlyEntitlements) that extend base integration classes for type-safe feature checking
+- **Composable Architecture**: Build focused composables that wrap third-party integrations with project-specific logic and error handling
+- **Database-First Integration**: Ensure database schema supports integration requirements before implementing client-side features
+
+## Development Workflow
+- **User Question Protocol**: When users question an approach with "Why did we...", immediately investigate existing configuration rather than defending current direction
+- **Simplicity Principle**: If a solution requires complex setup or infrastructure changes, question whether a simpler solution exists that works with existing architecture
+- **Documentation-First**: Create comprehensive documentation for all migration and setup processes to ensure maintainability
+- **Verification Protocol**: Always verify that changes are actually applied to the target environment, especially for database and cloud deployments
+- **Environment Variable Debugging Protocol**: When environment variables appear "set" but aren't loaded, check framework loading order and precedence rules (e.g., .env vs .env.local in Nuxt)
+- **User Correction Response Protocol**: When users explicitly correct an assumption ("environment variables ARE set"), immediately pivot to investigate their stated reality rather than defending the current approach
+- **Systematic Error Resolution**: Address errors in dependency order - fix foundational issues (environment, types, imports) before higher-level functionality
+
+## Foundation Setup Protocol
+- **Comprehensive Environment Setup**: Always establish complete development environment, testing framework, and version control before feature development begins
+- **Script-Based Automation**: Create reusable, well-documented scripts for common operations (build, test, deploy) to improve developer experience and reduce errors
+- **Quality Gates Integration**: Implement automated checks (pre-commit, pre-push hooks) that run linting, testing, and type checking to prevent common mistakes
+- **Progressive Task Management**: Use systematic task tracking with clear completion criteria and status updates throughout development phases
+- **Documentation-First Implementation**: Create comprehensive documentation alongside implementation, not as an afterthought, to ensure knowledge transfer and maintainability
