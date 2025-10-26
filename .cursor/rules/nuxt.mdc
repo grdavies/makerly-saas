@@ -5,6 +5,7 @@ The following documentation related to both Nuxt and Nuxt UI. Keep this in memor
 
 @.project_docs/nuxt/nuxt.md
 @.project_docs/nuxt/nuxt-ui.md
+@.project_docs/nuxt/nuxt-monorepo-doctrine.md
 
 ## Development Configuration
 - **TypeScript Development Mode**: Disable `typeCheck: true` during development to avoid auto-import conflicts with Nuxt's module system

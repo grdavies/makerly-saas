@@ -20,10 +20,21 @@
     "format": "pnpm -r format",
     "type-check": "pnpm -r type-check",
     "clean": "pnpm -r clean",
-    "db:migrate": "pnpm --filter web db:migrate",
-    "db:rollback": "pnpm --filter web db:rollback",
-    "db:status": "pnpm --filter web db:status",
-    "db:types": "pnpm --filter web db:types"
+    "db:migrate": "./scripts/db-migrate.sh migrate",
+    "db:rollback": "./scripts/db-migrate.sh rollback",
+    "db:status": "./scripts/db-migrate.sh status",
+    "db:types": "./scripts/db-migrate.sh types",
+    "db:new": "./scripts/db-migrate.sh new",
+    "db:diff": "./scripts/db-migrate.sh diff",
+    "db:reset": "./scripts/db-migrate.sh reset",
+    "db:seed": "./scripts/db-migrate.sh seed",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:link": "./scripts/db-migrate.sh link",
+    "db:validate": "./scripts/validate-migrations.sh --all",
+    "db:test-rls": "./scripts/test-rls-policies.sh test",
+    "setup:env": "./scripts/setup-env.sh",
+    "setup": "pnpm setup:env && pnpm install"
   },
   "workspaces": [
     "web",
@@ -40,6 +51,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "prettier": "^3.2.4",
+    "supabase": "^1.200.0",
     "typescript": "^5.3.3",
     "vite-tsconfig-paths": "^4.3.2"
   },

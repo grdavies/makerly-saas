@@ -107,13 +107,13 @@
   - [x] 2.7 Set up fonts (Nunito, Inter, JetBrains Mono) across all applications
 
 - [ ] 3.0 Configure Supabase Integration
-  - [ ] 3.1 Initialize Supabase project with cloud-first configuration
-  - [ ] 3.2 Set up environment variables for Supabase connection
-  - [ ] 3.3 Create initial database schema migration with core tables
-  - [ ] 3.4 Implement migration system with CLI commands and rollback capabilities
-  - [ ] 3.5 Set up Row-Level Security (RLS) policies for multi-tenant isolation
-  - [ ] 3.6 Create audit logging system with triggers and tables
-  - [ ] 3.7 Configure Supabase client in Nuxt applications
+  - [x] 3.1 Initialize Supabase project with cloud-first configuration (both web and marketing apps)
+  - [x] 3.2 Set up environment variables for Supabase connection
+  - [x] 3.3 Create initial database schema migration with core tables
+  - [x] 3.4 Implement migration system with CLI commands and rollback capabilities
+  - [x] 3.5 Link to remote Supabase project and apply initial schema migration
+  - [x] 3.6 Set up Row-Level Security (RLS) policies for multi-tenant isolation
+  - [x] 3.7 Configure Supabase client in Nuxt applications
 
 - [ ] 4.0 Implement Authentication & RBAC
   - [ ] 4.1 Set up Supabase authentication with email/password and confirmation flow

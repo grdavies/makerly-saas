@@ -22,6 +22,7 @@ export default defineNuxtConfig({
   // Modules
   modules: [
     '@nuxt/ui',
+    '@nuxtjs/supabase',
     '@nuxt/image',
     '@nuxt/icon',
     '@nuxtjs/color-mode',
@@ -46,6 +47,22 @@ export default defineNuxtConfig({
     storageKey: 'nuxt-color-mode'
   },
   
+  // Supabase configuration
+  supabase: {
+    redirectOptions: {
+      login: '/auth/login',
+      callback: '/auth/callback',
+      exclude: ['/']
+    }
+  },
+  
+  // Runtime config
+  runtimeConfig: {
+    public: {
+      supabaseUrl: process.env.SUPABASE_URL,
+      supabaseAnonKey: process.env.SUPABASE_ANON_KEY
+    }
+  },
   
   // Fonts configuration
   fonts: {
