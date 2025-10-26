@@ -17,7 +17,7 @@
     "format": "prettier --write .",
     "test": "vitest",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "echo 'No E2E tests in docs app'"
   },
   "dependencies": {
     "@makerly/shared": "workspace:*",

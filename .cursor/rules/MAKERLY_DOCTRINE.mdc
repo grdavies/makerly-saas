@@ -15,6 +15,7 @@ alwaysApply: true
 - When integrating third-party modules, verify configuration parameter names against official documentation before implementation
 - Use absolute paths for terminal commands when working across different directories in monorepo structure
 - **User Correction Response Protocol**: When users explicitly correct an assumption ("environment variables ARE set"), immediately pivot to investigate their stated reality rather than defending the current approach
+- **Configuration-First Debugging**: When tests fail, examine configuration files before assuming code issues
 
 ### **Database-First Integration**
 - Use migration files for all schema changes rather than direct database manipulation
@@ -55,6 +56,7 @@ alwaysApply: true
 - Always consider all applications in a monorepo when configuring shared services like Supabase - both web and marketing apps need access
 - Ensure environment variables are properly configured for each application
 - Use shared packages for common functionality across applications
+- **Monorepo Build Verification**: When working with monorepos, always verify all applications build successfully before marking integration tasks complete
 
 ---
 
@@ -126,6 +128,9 @@ alwaysApply: true
 - Test database migrations and rollback procedures
 - **CI/CD Configuration Best Practices**: Separate web server startup from test execution in CI environments to prevent timeouts
 - **Email System Architecture**: Create both service layer (EmailService) and API endpoints for comprehensive email functionality
+- **Automation-First Testing Protocol**: All automated tests must be configured to exit without manual intervention to enable continuous integration workflows
+- **Playwright Reporter Configuration**: Use `reporter: [['list'], ['html', { outputFolder: 'playwright-report', open: 'never' }]]` for automated testing that generates reports without serving them
+- **Composable Testing Strategy**: Complex Vue composables with deep dependency chains may require simplified testing approaches or integration tests rather than unit tests
 
 ---
 
@@ -162,4 +167,4 @@ alwaysApply: true
 ---
 
 **Last Updated:** 2025-01-27  
-**Version:** 1.1
+**Version:** 1.2
