@@ -127,14 +127,14 @@
   - [x] 4.9 Create useRBAC composable for permission checking and role management
   - [x] 4.10 Create authentication API routes for login, logout, and password reset
 
-- [ ] 5.0 Build I18N Infrastructure
-  - [ ] 5.1 Create I18N database tables for team and user configuration
-  - [ ] 5.2 Set up @nuxtjs/i18n with English (EN-US) as primary language
-  - [ ] 5.3 Create useI18n composable for translation functions
-  - [ ] 5.4 Implement currency formatting composable with team base currency
-  - [ ] 5.5 Implement date/time formatting composable with user overrides
-  - [ ] 5.6 Implement unit conversion composable with unit families
-  - [ ] 5.7 Create I18N configuration API endpoints for team and user settings
+- [x] 5.0 Build I18N Infrastructure
+  - [x] 5.1 Create I18N database tables for team and user configuration
+  - [x] 5.2 Set up @nuxtjs/i18n with English (EN-US) as primary language
+  - [x] 5.3 Create useI18n composable for translation functions
+  - [x] 5.4 Implement currency formatting composable with team base currency
+  - [x] 5.5 Implement date/time formatting composable with user overrides
+  - [x] 5.6 Implement unit conversion composable with unit families
+  - [x] 5.7 Create I18N configuration API endpoints for team and user settings
 
 - [ ] 6.0 Integrate Planship & Plan Gates
   - [ ] 6.1 Set up Planship account and configure API keys

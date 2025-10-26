@@ -188,5 +188,28 @@
   "mass_energy_absorption_coefficient": "Mass Energy Absorption Coefficient",
   "mass_stopping_power_coefficient": "Mass Stopping Power Coefficient",
   "mass_range_coefficient": "Mass Range Coefficient",
-  "mass_attenuation_coefficient": "Mass Attenuation Coefficient"
+  "mass_attenuation_coefficient": "Mass Attenuation Coefficient",
+  
+  "i18n": {
+    "settings": "Internationalization Settings",
+    "language": "Language",
+    "currency": "Currency",
+    "date_format": "Date Format",
+    "time_format": "Time Format",
+    "timezone": "Timezone",
+    "unit_system": "Unit System",
+    "number_format": "Number Format",
+    "preferences": "Preferences",
+    "team_defaults": "Team Defaults",
+    "user_overrides": "User Overrides",
+    "metric": "Metric",
+    "imperial": "Imperial",
+    "custom": "Custom",
+    "12_hour": "12 Hour",
+    "24_hour": "24 Hour",
+    "save_preferences": "Save Preferences",
+    "reset_to_defaults": "Reset to Defaults",
+    "preferences_saved": "Preferences saved successfully",
+    "preferences_reset": "Preferences reset to defaults"
+  }
 }

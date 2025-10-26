@@ -71,6 +71,33 @@ export type Database = {
           },
         ]
       }
+      currencies: {
+        Row: {
+          code: Database["public"]["Enums"]["currency_code"]
+          created_at: string | null
+          decimal_places: number | null
+          is_active: boolean | null
+          name: string
+          symbol: string
+        }
+        Insert: {
+          code: Database["public"]["Enums"]["currency_code"]
+          created_at?: string | null
+          decimal_places?: number | null
+          is_active?: boolean | null
+          name: string
+          symbol: string
+        }
+        Update: {
+          code?: Database["public"]["Enums"]["currency_code"]
+          created_at?: string | null
+          decimal_places?: number | null
+          is_active?: boolean | null
+          name?: string
+          symbol?: string
+        }
+        Relationships: []
+      }
       permissions: {
         Row: {
           action: string
@@ -166,6 +193,57 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      team_i18n_preferences: {
+        Row: {
+          created_at: string | null
+          currency_code: Database["public"]["Enums"]["currency_code"] | null
+          date_format: Database["public"]["Enums"]["date_format"] | null
+          number_format: string | null
+          team_id: string
+          time_format: Database["public"]["Enums"]["time_format"] | null
+          timezone_id: string | null
+          unit_family: Database["public"]["Enums"]["unit_family"] | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          currency_code?: Database["public"]["Enums"]["currency_code"] | null
+          date_format?: Database["public"]["Enums"]["date_format"] | null
+          number_format?: string | null
+          team_id: string
+          time_format?: Database["public"]["Enums"]["time_format"] | null
+          timezone_id?: string | null
+          unit_family?: Database["public"]["Enums"]["unit_family"] | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          currency_code?: Database["public"]["Enums"]["currency_code"] | null
+          date_format?: Database["public"]["Enums"]["date_format"] | null
+          number_format?: string | null
+          team_id?: string
+          time_format?: Database["public"]["Enums"]["time_format"] | null
+          timezone_id?: string | null
+          unit_family?: Database["public"]["Enums"]["unit_family"] | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_i18n_preferences_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: true
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_i18n_preferences_timezone_id_fkey"
+            columns: ["timezone_id"]
+            isOneToOne: false
+            referencedRelation: "timezones"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       team_members: {
         Row: {
@@ -283,6 +361,152 @@ export type Database = {
         }
         Relationships: []
       }
+      timezones: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          is_dst: boolean | null
+          name: string
+          utc_offset: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_dst?: boolean | null
+          name: string
+          utc_offset: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_dst?: boolean | null
+          name?: string
+          utc_offset?: string
+        }
+        Relationships: []
+      }
+      unit_families: {
+        Row: {
+          base_unit: string
+          created_at: string | null
+          family_type: Database["public"]["Enums"]["unit_family"]
+          id: string
+          is_active: boolean | null
+          name: string
+        }
+        Insert: {
+          base_unit: string
+          created_at?: string | null
+          family_type: Database["public"]["Enums"]["unit_family"]
+          id?: string
+          is_active?: boolean | null
+          name: string
+        }
+        Update: {
+          base_unit?: string
+          created_at?: string | null
+          family_type?: Database["public"]["Enums"]["unit_family"]
+          id?: string
+          is_active?: boolean | null
+          name?: string
+        }
+        Relationships: []
+      }
+      units: {
+        Row: {
+          conversion_factor: number
+          created_at: string | null
+          family_id: string | null
+          id: string
+          is_active: boolean | null
+          is_base_unit: boolean | null
+          name: string
+          symbol: string
+        }
+        Insert: {
+          conversion_factor: number
+          created_at?: string | null
+          family_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_base_unit?: boolean | null
+          name: string
+          symbol: string
+        }
+        Update: {
+          conversion_factor?: number
+          created_at?: string | null
+          family_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_base_unit?: boolean | null
+          name?: string
+          symbol?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "units_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "unit_families"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_i18n_preferences: {
+        Row: {
+          created_at: string | null
+          currency_code: Database["public"]["Enums"]["currency_code"] | null
+          date_format: Database["public"]["Enums"]["date_format"] | null
+          number_format: string | null
+          time_format: Database["public"]["Enums"]["time_format"] | null
+          timezone_id: string | null
+          unit_family: Database["public"]["Enums"]["unit_family"] | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          currency_code?: Database["public"]["Enums"]["currency_code"] | null
+          date_format?: Database["public"]["Enums"]["date_format"] | null
+          number_format?: string | null
+          time_format?: Database["public"]["Enums"]["time_format"] | null
+          timezone_id?: string | null
+          unit_family?: Database["public"]["Enums"]["unit_family"] | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          currency_code?: Database["public"]["Enums"]["currency_code"] | null
+          date_format?: Database["public"]["Enums"]["date_format"] | null
+          number_format?: string | null
+          time_format?: Database["public"]["Enums"]["time_format"] | null
+          timezone_id?: string | null
+          unit_family?: Database["public"]["Enums"]["unit_family"] | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_i18n_preferences_timezone_id_fkey"
+            columns: ["timezone_id"]
+            isOneToOne: false
+            referencedRelation: "timezones"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_i18n_preferences_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       users: {
         Row: {
           created_at: string | null
@@ -342,6 +566,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_user_currency: {
+        Args: { user_uuid: string }
+        Returns: Database["public"]["Enums"]["currency_code"]
+      }
+      get_user_i18n_preferences: { Args: { user_uuid: string }; Returns: Json }
+      get_user_unit_family: {
+        Args: { user_uuid: string }
+        Returns: Database["public"]["Enums"]["unit_family"]
+      }
       user_belongs_to_team: { Args: { p_team_id: string }; Returns: boolean }
       user_has_permission: {
         Args: { p_action: string; p_location?: string; p_resource: string }
@@ -358,8 +591,40 @@ export type Database = {
         | "login"
         | "logout"
         | "permission_change"
+      currency_code:
+        | "USD"
+        | "EUR"
+        | "GBP"
+        | "JPY"
+        | "CAD"
+        | "AUD"
+        | "CHF"
+        | "CNY"
+        | "SEK"
+        | "NZD"
+        | "MXN"
+        | "SGD"
+        | "HKD"
+        | "NOK"
+        | "TRY"
+        | "RUB"
+        | "INR"
+        | "BRL"
+        | "ZAR"
+        | "KRW"
+      date_format:
+        | "MM/DD/YYYY"
+        | "DD/MM/YYYY"
+        | "YYYY-MM-DD"
+        | "DD-MM-YYYY"
+        | "MM.DD.YYYY"
+        | "DD.MM.YYYY"
+        | "YYYY/MM/DD"
+        | "DD/MM/YY"
       member_status: "active" | "inactive" | "pending"
       team_status: "active" | "inactive" | "suspended"
+      time_format: "12h" | "24h"
+      unit_family: "metric" | "imperial" | "custom"
       user_status: "active" | "inactive" | "suspended"
     }
     CompositeTypes: {
@@ -496,8 +761,42 @@ export const Constants = {
         "logout",
         "permission_change",
       ],
+      currency_code: [
+        "USD",
+        "EUR",
+        "GBP",
+        "JPY",
+        "CAD",
+        "AUD",
+        "CHF",
+        "CNY",
+        "SEK",
+        "NZD",
+        "MXN",
+        "SGD",
+        "HKD",
+        "NOK",
+        "TRY",
+        "RUB",
+        "INR",
+        "BRL",
+        "ZAR",
+        "KRW",
+      ],
+      date_format: [
+        "MM/DD/YYYY",
+        "DD/MM/YYYY",
+        "YYYY-MM-DD",
+        "DD-MM-YYYY",
+        "MM.DD.YYYY",
+        "DD.MM.YYYY",
+        "YYYY/MM/DD",
+        "DD/MM/YY",
+      ],
       member_status: ["active", "inactive", "pending"],
       team_status: ["active", "inactive", "suspended"],
+      time_format: ["12h", "24h"],
+      unit_family: ["metric", "imperial", "custom"],
       user_status: ["active", "inactive", "suspended"],
     },
   },

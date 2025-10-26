@@ -51,13 +51,23 @@ export default defineNuxtConfig({
       {
         code: 'en',
         name: 'English',
-        file: 'en.json'
+        file: 'en.json',
+        iso: 'en-US'
       }
     ],
     lazy: true,
     langDir: 'locales/',
     defaultLocale: 'en',
-    strategy: 'no_prefix'
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: false
+    },
+    compilation: {
+      strictMessage: false
+    }
   },
   
   // Fonts configuration
