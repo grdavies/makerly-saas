@@ -1,0 +1,52 @@
+{
+  "name": "@makerly/marketing",
+  "version": "0.1.0",
+  "description": "Makerly Marketing Website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt generate",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "clean": "rm -rf .nuxt .output dist",
+    "type-check": "nuxt typecheck",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx",
+    "lint:fix": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "format": "prettier --write .",
+    "test": "vitest",
+    "test:unit": "vitest run",
+    "test:e2e": "echo 'No E2E tests in marketing app'"
+  },
+  "dependencies": {
+    "@makerly/shared": "workspace:*",
+    "@nuxt/fonts": "^0.7.2",
+    "@nuxt/icon": "^1.15.0",
+    "@nuxt/image": "^1.11.0",
+    "@nuxt/ui": "^2.15.0",
+    "@nuxtjs/color-mode": "^3.5.2",
+    "@nuxtjs/i18n": "^8.5.6",
+    "vite-tsconfig-paths": "^4.3.1",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.0"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.9.0",
+    "@nuxt/test-utils": "^3.8.0",
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@vue/test-utils": "^2.4.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-vue": "^9.19.0",
+    "jsdom": "^23.0.0",
+    "nuxt": "^3.8.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  }
+}

@@ -15,8 +15,10 @@ Supabase integration patterns and best practices for the Makerly project:
 - **Migration Tracking**: Implement comprehensive migration tracking with checksums, version control, and environment separation
 - **Error Handling**: Use proper error handling with fallback mechanisms for missing functions (e.g., exec_sql)
 - **Environment Validation**: Always validate that required environment variables are available before attempting to use them
+- **Environment Variable Validation Protocol**: Always verify that environment variables are actually populated with real values, not just placeholder text, before marking environment setup as complete
 - **Migration Verification Protocol**: Always verify that database migrations are successfully applied to the target environment before marking database-related tasks as complete
 - **Post-Migration Validation**: Run `pnpm db:status` to confirm migration application and `pnpm db:types` to update TypeScript types after applying migrations
+- **Multi-Application Architecture**: Always consider all applications in a monorepo when configuring shared services like Supabase - both web and marketing apps need access
 
 ## Caching Strategy
 - Implement service layer abstraction for cache operations with proper error handling
@@ -30,16 +32,9 @@ Supabase integration patterns and best practices for the Makerly project:
 - Use RFC-7807 compliant error responses for plan limit violations
 - Track usage with rolling windows and proper TTL management
 
-## I18N System Design
-- **Composable Architecture**: Break I18N features into focused composables (useI18n, useCurrencyFormatting, useDateTimeFormatting, etc.) for better maintainability and reusability
-- **Team-User Hierarchy**: Implement team-level I18N defaults with user-level overrides, enabling both consistency and personalization
-- **Progressive Implementation**: Start with core I18N composable, then build specialized utilities (currency, date/time, units) on top of the foundation
-- **Real-Time Preview**: Include live preview functionality in admin settings pages to improve user experience and reduce configuration errors
-- **Comprehensive Unit System**: Design unit conversion systems with base unit conversion and category-specific handling for special cases (temperature, currency)
-- **Type-First Development**: Define detailed interfaces and type definitions before implementation to ensure type safety and clear contracts
-
 ## Integration Patterns
 - **Third-Party Service Integration**: When integrating external services (like Planship), verify configuration and test connectivity before marking integration tasks as complete
+- **Third-Party Integration Verification**: When integrating external services, verify configuration and test connectivity before marking integration tasks as complete
 - **Type-Safe Integration**: Create custom classes (like MakerlyEntitlements) that extend base integration classes for type-safe feature checking
 - **Composable Architecture**: Build focused composables that wrap third-party integrations with project-specific logic and error handling
 - **Database-First Integration**: Ensure database schema supports integration requirements before implementing client-side features
@@ -48,10 +43,27 @@ Supabase integration patterns and best practices for the Makerly project:
 - **User Question Protocol**: When users question an approach with "Why did we...", immediately investigate existing configuration rather than defending current direction
 - **Simplicity Principle**: If a solution requires complex setup or infrastructure changes, question whether a simpler solution exists that works with existing architecture
 - **Documentation-First**: Create comprehensive documentation for all migration and setup processes to ensure maintainability
+- **Comprehensive Documentation Strategy**: Create detailed documentation alongside implementation, not as an afterthought, to ensure knowledge transfer and maintainability
+- **Comprehensive System Testing**: After implementing complex systems, test the complete flow end-to-end to identify configuration gaps
 - **Verification Protocol**: Always verify that changes are actually applied to the target environment, especially for database and cloud deployments
 - **Environment Variable Debugging Protocol**: When environment variables appear "set" but aren't loaded, check framework loading order and precedence rules (e.g., .env vs .env.local in Nuxt)
 - **User Correction Response Protocol**: When users explicitly correct an assumption ("environment variables ARE set"), immediately pivot to investigate their stated reality rather than defending the current approach
 - **Systematic Error Resolution**: Address errors in dependency order - fix foundational issues (environment, types, imports) before higher-level functionality
+
+## I18N System Design
+- **Composable-First Architecture**: Build focused, reusable composables that encapsulate complex business logic and provide type-safe interfaces
+- **Database-Driven Configuration**: Use database schema to drive application behavior rather than hardcoded configuration
+- **Hierarchical Preference Systems**: Implement team-level defaults with user-level overrides for flexible configuration management
+- **Real-World Feature Implementation**: Build features that handle real-world complexity (timezone conversion, unit families, currency exchange rates)
+- **Comprehensive Reference Data**: Populate database with comprehensive reference data (currencies, units, timezones) for production readiness
+- **Type-Safe Validation**: Use Zod schemas for API validation and TypeScript for compile-time type safety
+- **Multi-Layer Formatting**: Implement formatting at multiple levels (currency, date/time, units) with consistent interfaces
+
+## Security-First Development
+- **Enterprise-Grade Security**: Implement security features (2FA, RLS, audit logging) as foundational elements, not afterthoughts
+- **Database-Driven Security**: Use database triggers and functions to enforce business logic and maintain data consistency
+- **Composable Security**: Build focused, reusable composables that encapsulate complex security logic and provide type-safe interfaces
+- **Multi-Layer Security**: Implement security at multiple layers (database, API, UI, middleware) for comprehensive protection
 
 ## Foundation Setup Protocol
 - **Comprehensive Environment Setup**: Always establish complete development environment, testing framework, and version control before feature development begins

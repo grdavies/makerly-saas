@@ -1,0 +1,246 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+<<<<<<< Updated upstream
+
+# Build outputs
+dist/
+.nuxt/
+.output/
+.nitro/
+.cache/
+=======
+.pnpm-debug.log*
+
+# Nuxt.js
+.nuxt/
+.output/
+.nitro/
+dist/
+.nitro/
+
+# Build outputs
+build/
+dist/
+out/
+>>>>>>> Stashed changes
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+<<<<<<< Updated upstream
+.env.production
+=======
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+.nyc_output/
+
+# Test outputs
+test-results/
+playwright-report/
+coverage/
+>>>>>>> Stashed changes
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+<<<<<<< Updated upstream
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+=======
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Supabase
+.supabase/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# TypeScript
+*.tsbuildinfo
+>>>>>>> Stashed changes
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+<<<<<<< Updated upstream
+=======
+# Optional stylelint cache
+.stylelintcache
+
+>>>>>>> Stashed changes
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+<<<<<<< Updated upstream
+# parcel-bundler cache (https://parceljs.org/)
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Supabase
+.supabase/
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Vitest
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+=======
+# dotenv environment variable files
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Turbo
+.turbo/
+>>>>>>> Stashed changes
+
+# Vercel
+.vercel
+
+<<<<<<< Updated upstream
+# Sentry
+.sentryclirc
+=======
+# Netlify
+.netlify
+
+# Sentry
+.sentryclirc
+
+# Local development
+.local/
+local/
+
+# Generated files
+generated/
+auto-imports.d.ts
+components.d.ts
+>>>>>>> Stashed changes

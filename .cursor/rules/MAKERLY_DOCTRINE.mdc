@@ -1,0 +1,170 @@
+---
+alwaysApply: true
+---
+# **Makerly SaaS Project Doctrine**
+
+**Generated:** 2025-01-27  
+**Purpose:** Operational principles and best practices for the Makerly SaaS monorepo project
+
+---
+
+## **Core Development Principles**
+
+### **Environment Variable Validation Protocol**
+- Always verify that environment variables are actually populated with real values, not just placeholder text, before marking environment setup as complete
+- When integrating third-party modules, verify configuration parameter names against official documentation before implementation
+- Use absolute paths for terminal commands when working across different directories in monorepo structure
+- **User Correction Response Protocol**: When users explicitly correct an assumption ("environment variables ARE set"), immediately pivot to investigate their stated reality rather than defending the current approach
+- **Configuration-First Debugging**: When tests fail, examine configuration files before assuming code issues
+
+### **Database-First Integration**
+- Use migration files for all schema changes rather than direct database manipulation
+- Ensure database schema supports integration requirements before implementing client-side features
+- Always verify that database migrations are successfully applied to the target environment before marking database-related tasks as complete
+- Run `pnpm db:status` to confirm migration application and `pnpm db:types` to update TypeScript types after applying migrations
+
+### **Composable Architecture**
+- Build focused, reusable composables that encapsulate complex business logic and provide type-safe interfaces
+- Each composable should have a single responsibility and clear API boundaries
+- Use reactive state management with proper error handling and loading states
+- Implement proper cleanup and initialization patterns for composables
+
+### **API Design Standards**
+- Implement RFC-7807 compliant error responses for API endpoints to ensure consistent client-side error handling
+- Use Zod schemas for request/response validation
+- Implement proper authentication and authorization checks in all API routes
+- Follow consistent error response patterns across all endpoints
+
+### **Third-Party Service Integration**
+- When integrating external services (like Planship), verify configuration and test connectivity before marking integration tasks as complete
+- Create abstraction layers for third-party services to enable easier testing and potential service changes
+- Implement proper error handling and fallback mechanisms for external service failures
+
+### **Task Management Protocol**
+- Use systematic task tracking with clear completion criteria and status updates throughout development phases
+- Break down complex features into logical, sequential sub-tasks
+- Update task status immediately upon completion to maintain accurate project tracking
+- Use the @process-task-list.md protocol for systematic task execution
+
+### **Type Safety Standards**
+- Maintain strong TypeScript typing throughout the codebase
+- Generate and use database types from Supabase migrations
+- Use proper type definitions for all API requests and responses
+- Implement type-safe composable interfaces
+
+### **Multi-Application Architecture**
+- Always consider all applications in a monorepo when configuring shared services like Supabase - both web and marketing apps need access
+- Ensure environment variables are properly configured for each application
+- Use shared packages for common functionality across applications
+- **Monorepo Build Verification**: When working with monorepos, always verify all applications build successfully before marking integration tasks complete
+
+---
+
+## **Supabase Integration Patterns**
+
+### **Migration System Design**
+- **Cloud-First Approach**: Prioritize cloud Supabase development over local Docker unless explicitly required for offline work
+- **Configuration Analysis**: Always examine existing environment variables, Nuxt config, and previous migration scripts before proposing architectural changes
+- **Migration Tracking**: Implement comprehensive migration tracking with checksums, version control, and environment separation
+- **Error Handling**: Use proper error handling with fallback mechanisms for missing functions (e.g., exec_sql)
+- **Environment Validation**: Always validate that required environment variables are available before attempting to use them
+
+### **Database Schema Management**
+- Use migration files for all schema changes rather than direct database manipulation
+- Include proper RLS policies for all tables with team-based isolation
+- Add audit triggers to all tables for compliance tracking
+- Generate comprehensive TypeScript types for all database operations
+
+### **Authentication & RBAC**
+- Implement custom role-based access control with database-driven permissions
+- Use team-based isolation for all data access
+- Implement proper 2FA for super-admin users
+- Create comprehensive audit logging for all user actions
+
+---
+
+## **Plan Management System**
+
+### **Usage Tracking Architecture**
+- Implement rolling window usage tracking (daily, weekly, monthly, yearly)
+- Use database functions for efficient usage calculations and limit checking
+- Implement grace window management for temporary limit extensions
+- Create comprehensive usage monitoring and alerting systems
+
+### **Error Handling Standards**
+- Implement RFC-7807 compliant error responses for plan limit violations
+- Provide detailed error information with upgrade suggestions
+- Create client-side error handling composables for consistent user experience
+- Implement proper error recovery and fallback mechanisms
+
+### **UI Component Design**
+- Create reusable plan gate components for feature protection
+- Implement comprehensive usage tracking dashboards
+- Design user-friendly upgrade flows and billing management interfaces
+- Use consistent design patterns across all plan-related components
+
+---
+
+## **Development Workflow**
+
+### **Code Quality Standards**
+- Implement comprehensive linting and formatting rules
+- Use proper TypeScript configuration with strict mode
+- Implement pre-commit hooks for code quality enforcement
+- Create comprehensive test suites for all critical functionality
+- **Tool Version Compatibility Verification**: Always verify tool version compatibility before implementation (e.g., ESLint 9.x required for @nuxt/eslint-config)
+- **Development Tool Integration Pattern**: For monorepo setups, install tools at workspace level and configure per-application with consistent patterns
+
+### **Documentation Requirements**
+- Create comprehensive documentation for all major features
+- Document API endpoints with proper examples
+- Maintain up-to-date environment setup instructions
+- Create troubleshooting guides for common issues
+
+### **Testing Strategy**
+- Implement unit tests for all composables and utilities
+- Create API tests for all endpoints
+- Implement E2E tests for critical user flows
+- Test database migrations and rollback procedures
+- **CI/CD Configuration Best Practices**: Separate web server startup from test execution in CI environments to prevent timeouts
+- **Email System Architecture**: Create both service layer (EmailService) and API endpoints for comprehensive email functionality
+- **Automation-First Testing Protocol**: All automated tests must be configured to exit without manual intervention to enable continuous integration workflows
+- **Playwright Reporter Configuration**: Use `reporter: [['list'], ['html', { outputFolder: 'playwright-report', open: 'never' }]]` for automated testing that generates reports without serving them
+- **Composable Testing Strategy**: Complex Vue composables with deep dependency chains may require simplified testing approaches or integration tests rather than unit tests
+
+---
+
+## **Security & Compliance**
+
+### **Data Protection**
+- Implement proper RLS policies for all database tables
+- Use team-based data isolation throughout the application
+- Implement comprehensive audit logging for compliance
+- Use secure environment variable management
+
+### **Authentication Security**
+- Implement proper password policies and validation
+- Use secure session management
+- Implement 2FA for administrative users
+- Create proper logout and session cleanup procedures
+
+---
+
+## **Performance & Scalability**
+
+### **Database Optimization**
+- Implement proper indexing for all frequently queried tables
+- Use database functions for complex calculations
+- Implement proper connection pooling and management
+- Monitor and optimize query performance
+
+### **Client-Side Optimization**
+- Implement proper caching strategies for composables
+- Use reactive state management efficiently
+- Implement proper error boundaries and fallback UI
+- Optimize bundle size and loading performance
+
+---
+
+**Last Updated:** 2025-01-27  
+**Version:** 1.2
