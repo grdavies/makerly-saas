@@ -1,15 +1,18 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div
+    class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+  >
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Reset your password
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
-          Enter your email address and we'll send you a link to reset your password.
+          Enter your email address and we'll send you a link to reset your
+          password.
         </p>
       </div>
-      
+
       <UForm
         :state="form"
         :schema="schema"
@@ -26,12 +29,7 @@
           />
         </UFormGroup>
 
-        <UButton
-          type="submit"
-          block
-          :loading="loading"
-          :disabled="loading"
-        >
+        <UButton type="submit" block :loading="loading" :disabled="loading">
           Send reset link
         </UButton>
 
@@ -66,45 +64,45 @@
 </template>
 
 <script setup lang="ts">
-import { z } from 'zod'
+import { z } from 'zod';
 
 // Define page meta
 definePageMeta({
   layout: 'auth',
-  middleware: 'guest'
-})
+  middleware: 'guest',
+});
 
 // Form schema
 const schema = z.object({
-  email: z.string().email('Please enter a valid email address')
-})
+  email: z.string().email('Please enter a valid email address'),
+});
 
 // Form state
 const form = reactive({
-  email: ''
-})
+  email: '',
+});
 
 // Composables
-const { resetPassword, loading, error } = useAuth()
-const toast = useToast()
+const { resetPassword, loading, error } = useAuth();
+const toast = useToast();
 
 // Success state
-const success = ref(false)
+const success = ref(false);
 
 // Handle password reset
 const handleResetPassword = async () => {
   try {
-    await resetPassword(form.email)
-    success.value = true
-    
+    await resetPassword(form.email);
+    success.value = true;
+
     toast.add({
       title: 'Reset link sent!',
       description: 'Check your email for instructions to reset your password.',
-      color: 'green'
-    })
+      color: 'green',
+    });
   } catch (err) {
-    console.error('Password reset error:', err)
+    console.error('Password reset error:', err);
     // Error is handled by the composable
   }
-}
+};
 </script>

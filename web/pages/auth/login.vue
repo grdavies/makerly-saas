@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div
+    class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+  >
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -7,12 +9,15 @@
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
           Or
-          <NuxtLink to="/auth/signup" class="font-medium text-primary-600 hover:text-primary-500">
+          <NuxtLink
+            to="/auth/signup"
+            class="font-medium text-primary-600 hover:text-primary-500"
+          >
             create a new account
           </NuxtLink>
         </p>
       </div>
-      
+
       <UForm
         :state="form"
         :schema="schema"
@@ -45,7 +50,7 @@
             label="Remember me"
             :disabled="loading"
           />
-          
+
           <NuxtLink
             to="/auth/reset-password"
             class="text-sm font-medium text-primary-600 hover:text-primary-500"
@@ -54,12 +59,7 @@
           </NuxtLink>
         </div>
 
-        <UButton
-          type="submit"
-          block
-          :loading="loading"
-          :disabled="loading"
-        >
+        <UButton type="submit" block :loading="loading" :disabled="loading">
           Sign in
         </UButton>
 
@@ -76,69 +76,69 @@
 </template>
 
 <script setup lang="ts">
-import { z } from 'zod'
+import { z } from 'zod';
 
 // Define page meta
 definePageMeta({
   layout: 'auth',
-  middleware: 'guest'
-})
+  middleware: 'guest',
+});
 
 // Form schema
 const schema = z.object({
   email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters')
-})
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+});
 
 // Form state
 const form = reactive({
   email: '',
   password: '',
-  remember: false
-})
+  remember: false,
+});
 
 // Composables
-const { signIn, loading, error } = useAuth()
-const toast = useToast()
+const { signIn, loading, error } = useAuth();
+const toast = useToast();
 
 // Handle login
 const handleLogin = async () => {
   try {
-    await signIn(form.email, form.password)
-    
+    await signIn(form.email, form.password);
+
     toast.add({
       title: 'Welcome back!',
       description: 'You have been successfully signed in.',
-      color: 'green'
-    })
-    
+      color: 'green',
+    });
+
     // Redirect to dashboard
-    await navigateTo('/')
+    await navigateTo('/');
   } catch (err) {
-    console.error('Login error:', err)
+    console.error('Login error:', err);
     // Error is handled by the composable
   }
-}
+};
 
 // Handle OAuth login (if needed)
 const handleOAuthLogin = async (provider: 'google' | 'github') => {
   try {
-    const supabase = useSupabaseClient()
+    const supabase = useSupabaseClient();
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`
-      }
-    })
-    
-    if (error) throw error
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+
+    if (error) throw error;
   } catch (err) {
-    console.error('OAuth login error:', err)
+    console.error('OAuth login error:', err);
     toast.add({
       title: 'Login failed',
       description: 'There was an error signing in with ' + provider,
-      color: 'red'
-    })
+      color: 'red',
+    });
   }
-}
+};
 </script>

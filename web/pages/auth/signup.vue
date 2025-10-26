@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div
+    class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+  >
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -7,12 +9,15 @@
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
           Or
-          <NuxtLink to="/auth/login" class="font-medium text-primary-600 hover:text-primary-500">
+          <NuxtLink
+            to="/auth/login"
+            class="font-medium text-primary-600 hover:text-primary-500"
+          >
             sign in to your existing account
           </NuxtLink>
         </p>
       </div>
-      
+
       <UForm
         :state="form"
         :schema="schema"
@@ -68,17 +73,20 @@
         </UFormGroup>
 
         <UFormGroup name="terms">
-          <UCheckbox
-            v-model="form.acceptTerms"
-            :disabled="loading"
-          >
+          <UCheckbox v-model="form.acceptTerms" :disabled="loading">
             <template #label>
               I agree to the
-              <NuxtLink to="/terms" class="text-primary-600 hover:text-primary-500">
+              <NuxtLink
+                to="/terms"
+                class="text-primary-600 hover:text-primary-500"
+              >
                 Terms of Service
               </NuxtLink>
               and
-              <NuxtLink to="/privacy" class="text-primary-600 hover:text-primary-500">
+              <NuxtLink
+                to="/privacy"
+                class="text-primary-600 hover:text-primary-500"
+              >
                 Privacy Policy
               </NuxtLink>
             </template>
@@ -116,26 +124,30 @@
 </template>
 
 <script setup lang="ts">
-import { z } from 'zod'
+import { z } from 'zod';
 
 // Define page meta
 definePageMeta({
   layout: 'auth',
-  middleware: 'guest'
-})
+  middleware: 'guest',
+});
 
 // Form schema
-const schema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().min(1, 'Last name is required'),
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-  confirmPassword: z.string(),
-  acceptTerms: z.boolean().refine(val => val === true, 'You must accept the terms and conditions')
-}).refine(data => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"]
-})
+const schema = z
+  .object({
+    firstName: z.string().min(1, 'First name is required'),
+    lastName: z.string().min(1, 'Last name is required'),
+    email: z.string().email('Please enter a valid email address'),
+    password: z.string().min(8, 'Password must be at least 8 characters'),
+    confirmPassword: z.string(),
+    acceptTerms: z
+      .boolean()
+      .refine(val => val === true, 'You must accept the terms and conditions'),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
 
 // Form state
 const form = reactive({
@@ -144,16 +156,16 @@ const form = reactive({
   email: '',
   password: '',
   confirmPassword: '',
-  acceptTerms: false
-})
+  acceptTerms: false,
+});
 
 // Composables
-const { signUp, loading, error } = useAuth()
-const { createUserProfile } = useUser()
-const toast = useToast()
+const { signUp, loading, error } = useAuth();
+const { createUserProfile } = useUser();
+const toast = useToast();
 
 // Success state
-const success = ref(false)
+const success = ref(false);
 
 // Handle signup
 const handleSignup = async () => {
@@ -161,8 +173,8 @@ const handleSignup = async () => {
     // Sign up with Supabase Auth
     const authData = await signUp(form.email, form.password, {
       first_name: form.firstName,
-      last_name: form.lastName
-    })
+      last_name: form.lastName,
+    });
 
     if (authData.user) {
       // Create user profile in our custom users table
@@ -177,20 +189,20 @@ const handleSignup = async () => {
         currency: 'USD',
         date_format: 'MM/DD/YYYY',
         time_format: '12h',
-        unit_system: 'imperial'
-      })
+        unit_system: 'imperial',
+      });
 
-      success.value = true
-      
+      success.value = true;
+
       toast.add({
         title: 'Account created!',
         description: 'Please check your email to confirm your account.',
-        color: 'green'
-      })
+        color: 'green',
+      });
     }
   } catch (err) {
-    console.error('Signup error:', err)
+    console.error('Signup error:', err);
     // Error is handled by the composable
   }
-}
+};
 </script>

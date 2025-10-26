@@ -1,0 +1,22 @@
+{
+  "name": "@makerly/emails",
+  "version": "0.1.0",
+  "description": "Makerly Email Templates",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vue-email dev",
+    "export": "vue-email export",
+    "preview": "vue-email preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "vue-email": "^0.8.11"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.9.0",
+    "@nuxt/eslint-config": "^1.9.0",
+    "eslint": "^9.0.0"
+  }
+}

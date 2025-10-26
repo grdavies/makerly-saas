@@ -1,7 +1,9 @@
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <!-- Dashboard Header -->
-    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+    <header
+      class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center">
@@ -10,16 +12,8 @@
             </h1>
           </div>
           <div class="flex items-center space-x-4">
-            <UButton
-              variant="ghost"
-              size="sm"
-              icon="i-lucide-bell"
-            />
-            <UButton
-              variant="ghost"
-              size="sm"
-              icon="i-lucide-settings"
-            />
+            <UButton variant="ghost" size="sm" icon="i-lucide-bell" />
+            <UButton variant="ghost" size="sm" icon="i-lucide-settings" />
             <UAvatar
               src="https://avatars.githubusercontent.com/u/739984?v=4"
               alt="User"
@@ -54,15 +48,21 @@
           </template>
           <div class="space-y-4">
             <div class="flex justify-between">
-              <span class="text-sm text-gray-600 dark:text-gray-400">Total SKUs</span>
+              <span class="text-sm text-gray-600 dark:text-gray-400"
+                >Total SKUs</span
+              >
               <span class="font-semibold">0</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-sm text-gray-600 dark:text-gray-400">Low Stock Items</span>
+              <span class="text-sm text-gray-600 dark:text-gray-400"
+                >Low Stock Items</span
+              >
               <span class="font-semibold text-orange-500">0</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-sm text-gray-600 dark:text-gray-400">Out of Stock</span>
+              <span class="text-sm text-gray-600 dark:text-gray-400"
+                >Out of Stock</span
+              >
               <span class="font-semibold text-red-500">0</span>
             </div>
           </div>
@@ -78,15 +78,21 @@
           </template>
           <div class="space-y-4">
             <div class="flex justify-between">
-              <span class="text-sm text-gray-600 dark:text-gray-400">Today</span>
+              <span class="text-sm text-gray-600 dark:text-gray-400"
+                >Today</span
+              >
               <span class="font-semibold">0</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-sm text-gray-600 dark:text-gray-400">This Week</span>
+              <span class="text-sm text-gray-600 dark:text-gray-400"
+                >This Week</span
+              >
               <span class="font-semibold">0</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-sm text-gray-600 dark:text-gray-400">This Month</span>
+              <span class="text-sm text-gray-600 dark:text-gray-400"
+                >This Month</span
+              >
               <span class="font-semibold">0</span>
             </div>
           </div>
@@ -101,25 +107,13 @@
             </div>
           </template>
           <div class="space-y-3">
-            <UButton
-              block
-              variant="outline"
-              icon="i-lucide-plus"
-            >
+            <UButton block variant="outline" icon="i-lucide-plus">
               Add New Item
             </UButton>
-            <UButton
-              block
-              variant="outline"
-              icon="i-lucide-file-text"
-            >
+            <UButton block variant="outline" icon="i-lucide-file-text">
               Create Work Order
             </UButton>
-            <UButton
-              block
-              variant="outline"
-              icon="i-lucide-upload"
-            >
+            <UButton block variant="outline" icon="i-lucide-upload">
               Import Data
             </UButton>
           </div>
@@ -143,9 +137,9 @@
 <script setup lang="ts">
 // Dashboard page setup
 useHead({
-  title: 'Dashboard - Makerly'
-})
+  title: 'Dashboard - Makerly',
+});
 
 // Initialize color mode
-const colorMode = useColorMode()
+const colorMode = useColorMode();
 </script>

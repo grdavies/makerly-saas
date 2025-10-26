@@ -5,7 +5,8 @@
         {{ $t('i18n.settings') }}
       </h1>
       <p class="text-gray-600 dark:text-gray-400">
-        Configure your internationalization preferences for currency, date/time, and unit formatting.
+        Configure your internationalization preferences for currency, date/time,
+        and unit formatting.
       </p>
     </div>
 
@@ -19,7 +20,11 @@
           </p>
         </template>
 
-        <UForm :schema="userPreferencesSchema" :state="userPreferences" @submit="saveUserPreferences">
+        <UForm
+          :schema="userPreferencesSchema"
+          :state="userPreferences"
+          @submit="saveUserPreferences"
+        >
           <div class="space-y-6">
             <!-- Currency -->
             <UFormGroup label="Currency" name="currency_code">
@@ -85,7 +90,11 @@
               <UButton type="submit" :loading="saving">
                 {{ $t('i18n.save_preferences') }}
               </UButton>
-              <UButton variant="outline" @click="resetUserPreferences" :loading="resetting">
+              <UButton
+                variant="outline"
+                @click="resetUserPreferences"
+                :loading="resetting"
+              >
                 {{ $t('i18n.reset_to_defaults') }}
               </UButton>
             </div>
@@ -102,7 +111,11 @@
           </p>
         </template>
 
-        <UForm :schema="teamPreferencesSchema" :state="teamPreferences" @submit="saveTeamPreferences">
+        <UForm
+          :schema="teamPreferencesSchema"
+          :state="teamPreferences"
+          @submit="saveTeamPreferences"
+        >
           <div class="space-y-6">
             <!-- Currency -->
             <UFormGroup label="Default Currency" name="currency_code">
@@ -211,24 +224,24 @@
 </template>
 
 <script setup lang="ts">
-import { z } from 'zod'
-import { useI18n } from '~/composables/useI18n'
-import { useCurrencyFormatting } from '~/composables/useCurrencyFormatting'
-import { useDateTimeFormatting } from '~/composables/useDateTimeFormatting'
-import { useUnitConversion } from '~/composables/useUnitConversion'
-import { useRBAC } from '~/composables/useRBAC'
+import { z } from 'zod';
+import { useI18n } from '~/composables/useI18n';
+import { useCurrencyFormatting } from '~/composables/useCurrencyFormatting';
+import { useDateTimeFormatting } from '~/composables/useDateTimeFormatting';
+import { useUnitConversion } from '~/composables/useUnitConversion';
+import { useRBAC } from '~/composables/useRBAC';
 
 // Page metadata
 definePageMeta({
   middleware: 'auth',
-  layout: 'default'
-})
+  layout: 'default',
+});
 
 // Composables
-const { t } = useI18n()
-const { 
-  userPreferences, 
-  teamPreferences, 
+const { t } = useI18n();
+const {
+  userPreferences,
+  teamPreferences,
   effectivePreferences,
   saveUserPreferences: saveUserPrefs,
   resetUserPreferences: resetUserPrefs,
@@ -237,21 +250,22 @@ const {
   getAvailableTimezones,
   getAvailableDateFormats,
   getAvailableTimeFormats,
-  getAvailableNumberFormats
-} = useI18n()
+  getAvailableNumberFormats,
+} = useI18n();
 
-const { formatCurrency, formatCurrencyAbbreviated } = useCurrencyFormatting()
-const { formatDate, formatTime, formatDateTime, formatRelativeTime } = useDateTimeFormatting()
-const { formatUnit } = useUnitConversion()
-const { hasRole } = useRBAC()
+const { formatCurrency, formatCurrencyAbbreviated } = useCurrencyFormatting();
+const { formatDate, formatTime, formatDateTime, formatRelativeTime } =
+  useDateTimeFormatting();
+const { formatUnit } = useUnitConversion();
+const { hasRole } = useRBAC();
 
 // State
-const saving = ref(false)
-const resetting = ref(false)
-const savingTeam = ref(false)
+const saving = ref(false);
+const resetting = ref(false);
+const savingTeam = ref(false);
 
 // Check if user can edit team preferences
-const canEditTeam = computed(() => hasRole(['admin', 'super_admin']))
+const canEditTeam = computed(() => hasRole(['admin', 'super_admin']));
 
 // Validation schemas
 const userPreferencesSchema = z.object({
@@ -260,8 +274,8 @@ const userPreferencesSchema = z.object({
   date_format: z.string().optional(),
   time_format: z.string().optional(),
   timezone_id: z.string().optional(),
-  number_format: z.string().optional()
-})
+  number_format: z.string().optional(),
+});
 
 const teamPreferencesSchema = z.object({
   currency_code: z.string().min(1, 'Currency is required'),
@@ -269,128 +283,153 @@ const teamPreferencesSchema = z.object({
   date_format: z.string().min(1, 'Date format is required'),
   time_format: z.string().min(1, 'Time format is required'),
   timezone_id: z.string().optional(),
-  number_format: z.string().min(1, 'Number format is required')
-})
+  number_format: z.string().min(1, 'Number format is required'),
+});
 
 // Options
-const currencyOptions = ref<Array<{ value: string; label: string }>>([])
-const unitFamilyOptions = ref<Array<{ value: string; label: string }>>([])
-const timezoneOptions = ref<Array<{ value: string; label: string }>>([])
-const dateFormatOptions = ref<Array<{ value: string; label: string }>>([])
-const timeFormatOptions = ref<Array<{ value: string; label: string }>>([])
-const numberFormatOptions = ref<Array<{ value: string; label: string }>>([])
+const currencyOptions = ref<Array<{ value: string; label: string }>>([]);
+const unitFamilyOptions = ref<Array<{ value: string; label: string }>>([]);
+const timezoneOptions = ref<Array<{ value: string; label: string }>>([]);
+const dateFormatOptions = ref<Array<{ value: string; label: string }>>([]);
+const timeFormatOptions = ref<Array<{ value: string; label: string }>>([]);
+const numberFormatOptions = ref<Array<{ value: string; label: string }>>([]);
 
 // Load options
 const loadOptions = async () => {
   try {
-    const [currencies, unitFamilies, timezones, dateFormats, timeFormats, numberFormats] = await Promise.all([
+    const [
+      currencies,
+      unitFamilies,
+      timezones,
+      dateFormats,
+      timeFormats,
+      numberFormats,
+    ] = await Promise.all([
       getAvailableCurrencies(),
       getAvailableUnitFamilies(),
       getAvailableTimezones(),
       getAvailableDateFormats(),
       getAvailableTimeFormats(),
-      getAvailableNumberFormats()
-    ])
+      getAvailableNumberFormats(),
+    ]);
 
-    currencyOptions.value = currencies.map(c => ({ value: c.code, label: `${c.name} (${c.code})` }))
-    unitFamilyOptions.value = unitFamilies.map(f => ({ value: f.family_type, label: f.name }))
-    timezoneOptions.value = timezones.map(tz => ({ value: tz.id, label: `${tz.name} (${tz.utc_offset})` }))
-    dateFormatOptions.value = dateFormats.map(df => ({ value: df.value, label: df.label }))
-    timeFormatOptions.value = timeFormats.map(tf => ({ value: tf.value, label: tf.label }))
-    numberFormatOptions.value = numberFormats.map(nf => ({ value: nf.value, label: nf.label }))
+    currencyOptions.value = currencies.map(c => ({
+      value: c.code,
+      label: `${c.name} (${c.code})`,
+    }));
+    unitFamilyOptions.value = unitFamilies.map(f => ({
+      value: f.family_type,
+      label: f.name,
+    }));
+    timezoneOptions.value = timezones.map(tz => ({
+      value: tz.id,
+      label: `${tz.name} (${tz.utc_offset})`,
+    }));
+    dateFormatOptions.value = dateFormats.map(df => ({
+      value: df.value,
+      label: df.label,
+    }));
+    timeFormatOptions.value = timeFormats.map(tf => ({
+      value: tf.value,
+      label: tf.label,
+    }));
+    numberFormatOptions.value = numberFormats.map(nf => ({
+      value: nf.value,
+      label: nf.label,
+    }));
   } catch (error) {
-    console.error('Error loading options:', error)
+    console.error('Error loading options:', error);
   }
-}
+};
 
 // Save user preferences
 const saveUserPreferences = async (data: any) => {
   try {
-    saving.value = true
-    await saveUserPrefs(data)
+    saving.value = true;
+    await saveUserPrefs(data);
     await $fetch('/api/i18n/user-preferences', {
       method: 'PUT',
-      body: data
-    })
-    
+      body: data,
+    });
+
     // Show success message
-    const toast = useToast()
+    const toast = useToast();
     toast.add({
       title: t('i18n.preferences_saved'),
-      color: 'green'
-    })
+      color: 'green',
+    });
   } catch (error) {
-    console.error('Error saving user preferences:', error)
-    const toast = useToast()
+    console.error('Error saving user preferences:', error);
+    const toast = useToast();
     toast.add({
       title: 'Failed to save preferences',
       description: error instanceof Error ? error.message : 'Unknown error',
-      color: 'red'
-    })
+      color: 'red',
+    });
   } finally {
-    saving.value = false
+    saving.value = false;
   }
-}
+};
 
 // Reset user preferences
 const resetUserPreferences = async () => {
   try {
-    resetting.value = true
-    await resetUserPrefs()
+    resetting.value = true;
+    await resetUserPrefs();
     await $fetch('/api/i18n/user-preferences', {
-      method: 'DELETE'
-    })
-    
+      method: 'DELETE',
+    });
+
     // Show success message
-    const toast = useToast()
+    const toast = useToast();
     toast.add({
       title: t('i18n.preferences_reset'),
-      color: 'green'
-    })
+      color: 'green',
+    });
   } catch (error) {
-    console.error('Error resetting user preferences:', error)
-    const toast = useToast()
+    console.error('Error resetting user preferences:', error);
+    const toast = useToast();
     toast.add({
       title: 'Failed to reset preferences',
       description: error instanceof Error ? error.message : 'Unknown error',
-      color: 'red'
-    })
+      color: 'red',
+    });
   } finally {
-    resetting.value = false
+    resetting.value = false;
   }
-}
+};
 
 // Save team preferences
 const saveTeamPreferences = async (data: any) => {
   try {
-    savingTeam.value = true
+    savingTeam.value = true;
     await $fetch('/api/i18n/team-preferences', {
       method: 'PUT',
       query: { team_id: teamPreferences.value?.team_id },
-      body: data
-    })
-    
+      body: data,
+    });
+
     // Show success message
-    const toast = useToast()
+    const toast = useToast();
     toast.add({
       title: t('i18n.preferences_saved'),
-      color: 'green'
-    })
+      color: 'green',
+    });
   } catch (error) {
-    console.error('Error saving team preferences:', error)
-    const toast = useToast()
+    console.error('Error saving team preferences:', error);
+    const toast = useToast();
     toast.add({
       title: 'Failed to save team preferences',
       description: error instanceof Error ? error.message : 'Unknown error',
-      color: 'red'
-    })
+      color: 'red',
+    });
   } finally {
-    savingTeam.value = false
+    savingTeam.value = false;
   }
-}
+};
 
 // Initialize
 onMounted(() => {
-  loadOptions()
-})
+  loadOptions();
+});
 </script>

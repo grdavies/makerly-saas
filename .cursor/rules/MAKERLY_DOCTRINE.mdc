@@ -14,6 +14,7 @@ alwaysApply: true
 - Always verify that environment variables are actually populated with real values, not just placeholder text, before marking environment setup as complete
 - When integrating third-party modules, verify configuration parameter names against official documentation before implementation
 - Use absolute paths for terminal commands when working across different directories in monorepo structure
+- **User Correction Response Protocol**: When users explicitly correct an assumption ("environment variables ARE set"), immediately pivot to investigate their stated reality rather than defending the current approach
 
 ### **Database-First Integration**
 - Use migration files for all schema changes rather than direct database manipulation
@@ -109,6 +110,8 @@ alwaysApply: true
 - Use proper TypeScript configuration with strict mode
 - Implement pre-commit hooks for code quality enforcement
 - Create comprehensive test suites for all critical functionality
+- **Tool Version Compatibility Verification**: Always verify tool version compatibility before implementation (e.g., ESLint 9.x required for @nuxt/eslint-config)
+- **Development Tool Integration Pattern**: For monorepo setups, install tools at workspace level and configure per-application with consistent patterns
 
 ### **Documentation Requirements**
 - Create comprehensive documentation for all major features
@@ -121,6 +124,8 @@ alwaysApply: true
 - Create API tests for all endpoints
 - Implement E2E tests for critical user flows
 - Test database migrations and rollback procedures
+- **CI/CD Configuration Best Practices**: Separate web server startup from test execution in CI environments to prevent timeouts
+- **Email System Architecture**: Create both service layer (EmailService) and API endpoints for comprehensive email functionality
 
 ---
 
@@ -157,4 +162,4 @@ alwaysApply: true
 ---
 
 **Last Updated:** 2025-01-27  
-**Version:** 1.0
+**Version:** 1.1

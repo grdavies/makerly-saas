@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div
+    class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+  >
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -9,7 +11,7 @@
           Enter your new password below.
         </p>
       </div>
-      
+
       <UForm
         :state="form"
         :schema="schema"
@@ -36,12 +38,7 @@
           />
         </UFormGroup>
 
-        <UButton
-          type="submit"
-          block
-          :loading="loading"
-          :disabled="loading"
-        >
+        <UButton type="submit" block :loading="loading" :disabled="loading">
           Update password
         </UButton>
 
@@ -76,54 +73,56 @@
 </template>
 
 <script setup lang="ts">
-import { z } from 'zod'
+import { z } from 'zod';
 
 // Define page meta
 definePageMeta({
-  layout: 'auth'
-})
+  layout: 'auth',
+});
 
 // Form schema
-const schema = z.object({
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-  confirmPassword: z.string()
-}).refine(data => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"]
-})
+const schema = z
+  .object({
+    password: z.string().min(8, 'Password must be at least 8 characters'),
+    confirmPassword: z.string(),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
 
 // Form state
 const form = reactive({
   password: '',
-  confirmPassword: ''
-})
+  confirmPassword: '',
+});
 
 // Composables
-const { updatePassword, loading, error } = useAuth()
-const toast = useToast()
+const { updatePassword, loading, error } = useAuth();
+const toast = useToast();
 
 // Success state
-const success = ref(false)
+const success = ref(false);
 
 // Handle password update
 const handleUpdatePassword = async () => {
   try {
-    await updatePassword(form.password)
-    success.value = true
-    
+    await updatePassword(form.password);
+    success.value = true;
+
     toast.add({
       title: 'Password updated!',
       description: 'Your password has been successfully updated.',
-      color: 'green'
-    })
-    
+      color: 'green',
+    });
+
     // Redirect to login after a delay
     setTimeout(() => {
-      navigateTo('/auth/login')
-    }, 2000)
+      navigateTo('/auth/login');
+    }, 2000);
   } catch (err) {
-    console.error('Password update error:', err)
+    console.error('Password update error:', err);
     // Error is handled by the composable
   }
-}
+};
 </script>

@@ -1,19 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  
+
   // Enable SSR mode for web application
   ssr: true,
-  
+
   // TypeScript configuration
   typescript: {
     strict: true,
-    typeCheck: false // Disable during development to avoid auto-import conflicts
+    typeCheck: false, // Disable during development to avoid auto-import conflicts
   },
-  
+
   // CSS configuration
   css: ['@/assets/css/main.css'],
-  
+
   // Modules
   modules: [
     '@nuxt/ui',
@@ -24,15 +24,16 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxt/fonts',
     '@planship/nuxt',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxt/eslint',
   ],
-  
+
   // UI module configuration
   ui: {
     global: true,
-    icons: ['lucide']
+    icons: ['lucide'],
   },
-  
+
   // Color mode configuration
   colorMode: {
     preference: 'system',
@@ -42,9 +43,9 @@ export default defineNuxtConfig({
     componentName: 'ColorScheme',
     classPrefix: '',
     classSuffix: '',
-    storageKey: 'nuxt-color-mode'
+    storageKey: 'nuxt-color-mode',
   },
-  
+
   // I18n configuration
   i18n: {
     locales: [
@@ -52,8 +53,8 @@ export default defineNuxtConfig({
         code: 'en',
         name: 'English',
         file: 'en.json',
-        iso: 'en-US'
-      }
+        iso: 'en-US',
+      },
     ],
     lazy: true,
     langDir: 'locales/',
@@ -63,76 +64,76 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root',
-      alwaysRedirect: false
+      alwaysRedirect: false,
     },
     compilation: {
-      strictMessage: false
-    }
+      strictMessage: false,
+    },
   },
-  
+
   // Fonts configuration
   fonts: {
     families: [
       { name: 'Nunito', provider: 'google' },
       { name: 'Inter', provider: 'google' },
-      { name: 'JetBrains Mono', provider: 'google' }
-    ]
+      { name: 'JetBrains Mono', provider: 'google' },
+    ],
   },
-  
+
   // Supabase configuration
   supabase: {
     redirectOptions: {
       login: '/auth/login',
       callback: '/auth/callback',
-      exclude: ['/']
-    }
+      exclude: ['/'],
+    },
   },
-  
+
   // Planship configuration
   planship: {
     apiKey: process.env.PLANSHIP_API_KEY,
     productSlug: process.env.PLANSHIP_PRODUCT_SLUG,
     clientId: process.env.PLANSHIP_API_CLIENT_ID,
-    clientSecret: process.env.PLANSHIP_API_CLIENT_SECRET
+    clientSecret: process.env.PLANSHIP_API_CLIENT_SECRET,
   },
-  
+
   // Pinia configuration
   pinia: {
-    storesDirs: ['./stores/**']
+    storesDirs: ['./stores/**'],
   },
-  
+
   // Runtime config
   runtimeConfig: {
     public: {
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
       planshipApiKey: process.env.PLANSHIP_API_KEY,
-      planshipProductSlug: process.env.PLANSHIP_PRODUCT_SLUG
-    }
+      planshipProductSlug: process.env.PLANSHIP_PRODUCT_SLUG,
+    },
   },
-  
+
   // Vite configuration
   vite: {
     plugins: [
       // @ts-ignore
-      (await import('vite-tsconfig-paths')).default()
+      (await import('vite-tsconfig-paths')).default(),
     ],
     resolve: {
       alias: {
-        '@shared': '../shared/src'
-      }
-    }
+        '@shared': '../shared/src',
+      },
+    },
   },
-  
+
   // Build configuration
   build: {
-    transpile: ['@makerly/shared']
+    transpile: ['@makerly/shared'],
   },
-  
+
   // Nitro configuration
   nitro: {
     experimental: {
-      wasm: true
-    }
-  }
-})
+      wasm: true,
+    },
+  },
+});

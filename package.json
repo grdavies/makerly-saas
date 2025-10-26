@@ -15,6 +15,9 @@
     "test": "pnpm -r test",
     "test:unit": "pnpm -r test:unit",
     "test:e2e": "pnpm -r test:e2e",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:debug": "playwright test --debug",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
     "format": "pnpm -r format",
@@ -34,7 +37,8 @@
     "db:validate": "./scripts/validate-migrations.sh --all",
     "db:test-rls": "./scripts/test-rls-policies.sh test",
     "setup:env": "./scripts/setup-env.sh",
-    "setup": "pnpm setup:env && pnpm install"
+    "setup": "pnpm setup:env && pnpm install",
+    "prepare": "husky"
   },
   "workspaces": [
     "web",
@@ -44,18 +48,50 @@
     "emails"
   ],
   "devDependencies": {
+    "@nuxt/test-utils": "^3.8.0",
+    "@playwright/test": "^1.40.0",
     "@types/node": "^20.11.0",
-    "@typescript-eslint/eslint-plugin": "^6.19.0",
-    "@typescript-eslint/parser": "^6.19.0",
-    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "@vitest/ui": "^4.0.3",
+    "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-nuxt": "^4.0.0",
-    "prettier": "^3.2.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.6.2",
+    "resend": "^6.2.2",
     "supabase": "^1.200.0",
     "typescript": "^5.3.3",
-    "vite-tsconfig-paths": "^4.3.2"
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^4.0.3",
+    "vue-email": "^0.8.11"
   },
   "dependencies": {
     "vue": "^3.4.0"
+  },
+  "lint-staged": {
+    "web/**/*.{js,ts,vue}": [
+      "cd web && eslint --fix",
+      "prettier --write"
+    ],
+    "docs/**/*.{js,ts,vue}": [
+      "cd docs && eslint --fix",
+      "prettier --write"
+    ],
+    "marketing/**/*.{js,ts,vue}": [
+      "cd marketing && eslint --fix",
+      "prettier --write"
+    ],
+    "emails/**/*.{js,ts,vue}": [
+      "cd emails && eslint --fix",
+      "prettier --write"
+    ],
+    "*.{js,ts,vue}": [
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }
