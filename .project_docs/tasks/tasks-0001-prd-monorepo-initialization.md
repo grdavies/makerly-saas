@@ -98,13 +98,13 @@
   - [x] 1.6 Initialize shared package with TypeScript types and utilities
 
 - [ ] 2.0 Initialize Nuxt 4 Applications
-  - [ ] 2.1 Create web application with Nuxt 4 and required modules
-  - [ ] 2.2 Configure web app with dashboard template and SSR mode
-  - [ ] 2.3 Create docs application with Nuxt UI Docs template and SSG mode
-  - [ ] 2.4 Create marketing application with Nuxt UI SaaS template and SSG/ISR mode
-  - [ ] 2.5 Install and configure all required Nuxt modules (@nuxt/ui, @nuxtjs/supabase, @nuxt/image, @nuxt/icon, @nuxtjs/color-mode, @nuxtjs/i18n, @nuxt/fonts, @planship/nuxt)
-  - [ ] 2.6 Configure vite-tsconfig-paths for proper TypeScript path resolution
-  - [ ] 2.7 Set up fonts (Nunito, Inter, JetBrains Mono) across all applications
+  - [x] 2.1 Create web application with Nuxt 4 and required modules
+  - [x] 2.2 Configure web app with dashboard template and SSR mode
+  - [x] 2.3 Create docs application with Nuxt UI Docs template and SSG mode
+  - [x] 2.4 Create marketing application with Nuxt UI SaaS template and SSG/ISR mode
+  - [x] 2.5 Install and configure all required Nuxt modules (@nuxt/ui, @nuxtjs/supabase, @nuxt/image, @nuxt/icon, @nuxtjs/color-mode, @nuxtjs/i18n, @nuxt/fonts, @planship/nuxt)
+  - [x] 2.6 Configure vite-tsconfig-paths for proper TypeScript path resolution
+  - [x] 2.7 Set up fonts (Nunito, Inter, JetBrains Mono) across all applications
 
 - [ ] 3.0 Configure Supabase Integration
   - [ ] 3.1 Initialize Supabase project with cloud-first configuration
