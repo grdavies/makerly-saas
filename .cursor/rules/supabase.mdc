@@ -17,6 +17,7 @@ Supabase integration patterns and best practices for the Makerly project:
 - **Environment Validation**: Always validate that required environment variables are available before attempting to use them
 - **Migration Verification Protocol**: Always verify that database migrations are successfully applied to the target environment before marking database-related tasks as complete
 - **Post-Migration Validation**: Run `pnpm db:status` to confirm migration application and `pnpm db:types` to update TypeScript types after applying migrations
+- **Multi-Application Architecture**: Always consider all applications in a monorepo when configuring shared services like Supabase - both web and marketing apps need access
 
 ## Caching Strategy
 - Implement service layer abstraction for cache operations with proper error handling
@@ -48,6 +49,7 @@ Supabase integration patterns and best practices for the Makerly project:
 - **User Question Protocol**: When users question an approach with "Why did we...", immediately investigate existing configuration rather than defending current direction
 - **Simplicity Principle**: If a solution requires complex setup or infrastructure changes, question whether a simpler solution exists that works with existing architecture
 - **Documentation-First**: Create comprehensive documentation for all migration and setup processes to ensure maintainability
+- **Comprehensive Documentation Strategy**: Create detailed documentation alongside implementation, not as an afterthought, to ensure knowledge transfer and maintainability
 - **Verification Protocol**: Always verify that changes are actually applied to the target environment, especially for database and cloud deployments
 - **Environment Variable Debugging Protocol**: When environment variables appear "set" but aren't loaded, check framework loading order and precedence rules (e.g., .env vs .env.local in Nuxt)
 - **User Correction Response Protocol**: When users explicitly correct an assumption ("environment variables ARE set"), immediately pivot to investigate their stated reality rather than defending the current approach

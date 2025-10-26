@@ -106,7 +106,7 @@
   - [x] 2.6 Configure vite-tsconfig-paths for proper TypeScript path resolution
   - [x] 2.7 Set up fonts (Nunito, Inter, JetBrains Mono) across all applications
 
-- [ ] 3.0 Configure Supabase Integration
+- [x] 3.0 Configure Supabase Integration
   - [x] 3.1 Initialize Supabase project with cloud-first configuration (both web and marketing apps)
   - [x] 3.2 Set up environment variables for Supabase connection
   - [x] 3.3 Create initial database schema migration with core tables
@@ -115,17 +115,17 @@
   - [x] 3.6 Set up Row-Level Security (RLS) policies for multi-tenant isolation
   - [x] 3.7 Configure Supabase client in Nuxt applications
 
-- [ ] 4.0 Implement Authentication & RBAC
-  - [ ] 4.1 Set up Supabase authentication with email/password and confirmation flow
-  - [ ] 4.2 Create users table with team association
-  - [ ] 4.3 Create teams table with I18N configuration fields
-  - [ ] 4.4 Create team_members table with role assignment
-  - [ ] 4.5 Create roles table with custom permission definitions
-  - [ ] 4.6 Create role_permissions table with action/resource/location scoping
-  - [ ] 4.7 Implement 2FA for super-admin users using Supabase Auth
-  - [ ] 4.8 Create useAuth composable for authentication state management
-  - [ ] 4.9 Create useRBAC composable for permission checking and role management
-  - [ ] 4.10 Create authentication API routes for login, logout, and password reset
+- [x] 4.0 Implement Authentication & RBAC
+  - [x] 4.1 Set up Supabase authentication with email/password and confirmation flow
+  - [x] 4.2 Create users table with team association
+  - [x] 4.3 Create teams table with I18N configuration fields
+  - [x] 4.4 Create team_members table with role assignment
+  - [x] 4.5 Create roles table with custom permission definitions
+  - [x] 4.6 Create role_permissions table with action/resource/location scoping
+  - [x] 4.7 Implement 2FA for super-admin users using Supabase Auth
+  - [x] 4.8 Create useAuth composable for authentication state management
+  - [x] 4.9 Create useRBAC composable for permission checking and role management
+  - [x] 4.10 Create authentication API routes for login, logout, and password reset
 
 - [ ] 5.0 Build I18N Infrastructure
   - [ ] 5.1 Create I18N database tables for team and user configuration
